@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: '*.ngrok-free.dev',
+      },
+      {
+        protocol: 'https',
         hostname: '*.ngrok-free.app',
       },
       {
