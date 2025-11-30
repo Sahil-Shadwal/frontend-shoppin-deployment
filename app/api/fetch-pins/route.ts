@@ -4,10 +4,10 @@ const DJANGO_BACKEND_URL = process.env.DJANGO_BACKEND_URL || process.env.NEXT_PU
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const category = searchParams.get('category');
+  const query = searchParams.get('query') || searchParams.get('category');
 
-  if (!category) {
-    return NextResponse.json({ success: false, error: 'Category is required' }, { status: 400 });
+  if (!query) {
+    return NextResponse.json({ success: false, error: 'Query is required' }, { status: 400 });
   }
 
   try {
@@ -17,8 +17,8 @@ export async function GET(request: Request) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: category,
-        category: category
+        query: query,
+        category: query
       }),
     });
 
