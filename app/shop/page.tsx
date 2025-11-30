@@ -50,7 +50,11 @@ export default function ShopPage() {
       // Fetch fresh data in background
       try {
         const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
-        const response = await fetch(`${backendUrl}/api/shop/categories/`);
+        const response = await fetch(`${backendUrl}/api/shop/categories/`, {
+          headers: {
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
         const data = await response.json();
         if (data.success) {
           setCategories(data.categories);
@@ -77,7 +81,10 @@ export default function ShopPage() {
       const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
       const response = await fetch(`${backendUrl}/api/shop/search/`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
         body: JSON.stringify({
           query: searchQuery,
           category: selectedCategory,
@@ -106,7 +113,10 @@ export default function ShopPage() {
       const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
       const response = await fetch(`${backendUrl}/api/shop/search/`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
         body: JSON.stringify({
           query: categoryName,
           category: categoryName,
