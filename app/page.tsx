@@ -125,7 +125,11 @@ export default function Home() {
     const prefetchShopCategories = async () => {
       try {
         const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
-        const response = await fetch(`${backendUrl}/api/shop/categories/`);
+        const response = await fetch(`${backendUrl}/api/shop/categories/`, {
+          headers: {
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
         const data = await response.json();
         if (data.success) {
           localStorage.setItem('shop_categories', JSON.stringify(data.categories));
