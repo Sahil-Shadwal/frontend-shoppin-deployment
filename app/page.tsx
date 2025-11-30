@@ -181,10 +181,10 @@ export default function Home() {
               <h1 className="text-2xl font-bold text-red-600">
                 Sh🍓ppin
               </h1>
-              <nav className="hidden md:flex gap-6">
+              <nav className="flex gap-6">
                 <Link 
                   href="/shop"
-                  className="font-semibold hover:underline flex items-center gap-1"
+                  className="font-semibold hover:underline flex items-center gap-1 text-gray-700"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />

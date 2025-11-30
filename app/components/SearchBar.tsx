@@ -48,15 +48,15 @@ export default function SearchBar({ onSearch, onImageSearch, isLoading }: Search
   return (
     <div className="relative w-full max-w-2xl mx-auto">
       <form onSubmit={handleSubmit} className="relative">
-        <div className="flex items-center gap-2 bg-white rounded-full shadow-lg px-6 py-4 border-2 border-transparent focus-within:border-black transition-all">
-          <Search className="w-6 h-6 text-gray-400" />
+        <div className="flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-3 md:px-6 md:py-4 border-2 border-transparent focus-within:border-black transition-all">
+          <Search className="w-5 h-5 md:w-6 md:h-6 text-gray-400" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
-            placeholder="Search fashion styles..."
-            className="flex-1 outline-none text-lg"
+            placeholder="Search..."
+            className="flex-1 outline-none text-base md:text-lg min-w-0"
             disabled={isLoading}
           />
           
@@ -64,10 +64,10 @@ export default function SearchBar({ onSearch, onImageSearch, isLoading }: Search
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors"
+            className="flex items-center gap-2 bg-black text-white px-3 py-2 md:px-4 md:py-2 rounded-full hover:bg-gray-800 transition-colors flex-shrink-0"
           >
             <Camera className="w-5 h-5" />
-            <span className="text-sm font-medium">Upload</span>
+            <span className="text-sm font-medium hidden md:inline">Upload</span>
           </button>
           
           <input

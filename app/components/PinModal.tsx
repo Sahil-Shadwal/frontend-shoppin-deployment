@@ -159,11 +159,11 @@ export default function PinModal({ pin, onClose }: PinModalProps) {
 
   return (
     <div 
-      className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/80 z-50 flex items-end md:items-center justify-center md:p-4"
       onClick={onClose}
     >
       <div 
-        className="relative bg-white rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col"
+        className="relative bg-white w-full h-full md:h-auto md:max-h-[90vh] md:max-w-6xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -232,8 +232,8 @@ export default function PinModal({ pin, onClose }: PinModalProps) {
                   <ShoppingBag className="w-5 h-5" />
                   Shop the Vibe
                 </h3>
-                {/* Filters Container */}
-                <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3">
+                {/* Filters Container - Hidden on Mobile */}
+                <div className="hidden md:flex flex-col sm:flex-row items-end sm:items-center gap-3">
                   {/* Brand Selector */}
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-medium text-gray-500">Brand:</span>
@@ -284,6 +284,8 @@ export default function PinModal({ pin, onClose }: PinModalProps) {
                       selectedCategory === cat.id 
                         ? 'bg-black text-white' 
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    } ${
+                      ['outerwear', 'bags', 'accessories'].includes(cat.id) ? 'hidden md:block' : ''
                     }`}
                   >
                     {cat.label}

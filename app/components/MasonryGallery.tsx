@@ -54,7 +54,7 @@ export default function MasonryGallery({ pins, onPinClick }: MasonryGalleryProps
   return (
     <Masonry
       breakpointCols={breakpointColumns}
-      className="flex -ml-4 w-auto"
+      className="flex -ml-4 w-auto max-w-full"
       columnClassName="pl-4 bg-clip-padding"
     >
       {visiblePins.map((pin, index) => (
