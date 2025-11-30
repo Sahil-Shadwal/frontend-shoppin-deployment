@@ -11,15 +11,11 @@ export async function GET(request: Request) {
   }
 
   try {
-    const response = await fetch(`${DJANGO_BACKEND_URL}/api/shop/search/`, {
-      method: 'POST',
+    const response = await fetch(`${DJANGO_BACKEND_URL}/api/gallery/?query=${encodeURIComponent(query)}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        query: query,
-        category: query
-      }),
     });
 
     if (!response.ok) {
@@ -27,7 +23,18 @@ export async function GET(request: Request) {
     }
 
     const data = await response.json();
-    return NextResponse.json(data);
+    
+    // Map backend ScrapedImage to frontend Pin format
+    const pins = data.images.map((img: any) => ({
+      id: img.id,
+      imageUrl: img.image_url,
+      thumbnailUrl: img.thumbnail_url,
+      title: img.caption || 'Pinterest Pin',
+      sourceUrl: img.source_url || '#',
+      query: img.query
+    }));
+
+    return NextResponse.json({ success: true, pins: pins });
   } catch (error) {
     console.error('Error fetching pins:', error);
     return NextResponse.json({ success: false, error: 'Failed to fetch pins' }, { status: 500 });
