@@ -143,41 +143,27 @@ export default function Home() {
   }, []);
 
   const handleImageSearch = async (file: File) => {
-    console.log(`📸 Uploading image: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`);
+    console.log(`📸 Processing image: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`);
     
     try {
-      // Upload to temp storage endpoint
-      const formData = new FormData();
-      formData.append('image', file);
-      
-      const uploadResponse = await fetch('/api/upload-temp', {
-        method: 'POST',
-        body: formData,
-      });
-      
-      if (!uploadResponse.ok) {
-        throw new Error('Failed to upload image');
-      }
-      
-      const uploadData = await uploadResponse.json();
-      const imageUrl = uploadData.imageUrl;
-      
-      console.log('✅ Image cached at:', imageUrl);
-      
-      // Store permanent URL in sessionStorage
-      sessionStorage.setItem('searchImageUrl', imageUrl);
-      
-      // Convert file to base64 for storage
+      // Convert file to base64 for storage and display
       const reader = new FileReader();
       reader.onloadend = () => {
-        sessionStorage.setItem('searchImageFile', reader.result as string);
+        const base64String = reader.result as string;
+        
+        // Store both as Data URL (no server upload needed!)
+        sessionStorage.setItem('searchImageUrl', base64String);
+        sessionStorage.setItem('searchImageFile', base64String);
+        
+        console.log('✅ Image processed locally');
+        
         // Redirect to search page
         window.location.href = '/search';
       };
       reader.readAsDataURL(file);
     } catch (error) {
-      console.error('❌ Failed to upload image:', error);
-      alert('Failed to upload image. Please try again.');
+      console.error('❌ Failed to process image:', error);
+      alert('Failed to process image. Please try again.');
     }
   };
 
