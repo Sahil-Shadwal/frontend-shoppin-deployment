@@ -145,10 +145,10 @@ function SearchPageContent() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex gap-6">
-          {/* Left Panel - Sticky */}
-          <div className="w-80 flex-shrink-0">
-            <div className="sticky top-24">
+        <div className="flex flex-col md:flex-row gap-6">
+          {/* Left Panel - Sticky on Desktop, Static on Mobile */}
+          <div className="w-full md:w-80 flex-shrink-0">
+            <div className="md:sticky md:top-24">
               <SearchControls
                 uploadedImage={uploadedImage}
                 maxPrice={maxPrice}
