@@ -257,7 +257,7 @@ export default function Home() {
           </>
         ) : (
           <div className="flex flex-col items-center justify-center min-h-[60vh]">
-            <p className="text-gray-600 text-lg">No pins found. Try a different search!</p>
+            <p className="text-gray-600 text-lg">The backend is down,just let me know i will restart it. </p>
           </div>
         )}
       </main>
